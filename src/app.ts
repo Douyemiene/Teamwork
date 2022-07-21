@@ -7,8 +7,11 @@ export class Application{
         this.container = container
     }
 
-    start(){
+    async start(){
+        let db = this.container.get('db')
         const server = new RestServer(this.container)
+        await db.connect()
         server.start()
+
     }
 }
