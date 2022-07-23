@@ -1,7 +1,7 @@
 
 import { inject, injectable } from 'inversify';
-import { IUser, User } from '../infrastructure/mongo/models/user';
-import { Model } from 'mongoose';
+import { IUser, User, UserModel } from '../infrastructure/mongo/models/user';
+import { HydratedDocument, Model } from 'mongoose';
 
 export interface IUserRepo {
     create(user: Partial<IUser>): Promise<IUser>;
@@ -13,14 +13,15 @@ export interface IUserRepo {
 
 @injectable()
 export class UserRepository implements IUserRepo {
-    private userModel: Model<IUser> = User;
+    private userModel: UserModel = User;
     constructor(){
 
     }
 
     async create(user: Partial<IUser>): Promise<IUser> {
-        return await this.userModel.create({ ...user })
-        // return 'one of the foos'
+        const userData = await this.userModel.create({ ...user })
+        const data = userData.createObject()
+        return data
     }
     
     async getOne(username: string): Promise<IUser>{
