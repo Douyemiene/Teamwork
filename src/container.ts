@@ -10,6 +10,4 @@ let container = new Container({ autoBindInjectable: true });
 //set up bindings
 container.bind<Function>('db').toConstantValue(MongoDBConnection);
 
-//models
-container.bind<Model<IUser>>('userModel').toConstantValue(User)
 export default container
