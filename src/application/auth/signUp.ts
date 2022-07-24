@@ -21,8 +21,7 @@ export class SignUp {
             const token = await this.jwt.createToken(userData)   
             return {...userData, token}
         }catch(err){
-            console.log({err}
-        )
-    }
+           throw err
+        }
     }
 }

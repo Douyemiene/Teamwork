@@ -12,12 +12,17 @@ export class UserController extends BaseHttpController  {
     }
 
     @httpGet("/")
-    private async index(@request() req: express.Request, @response() res: express.Response, @next() next: express.NextFunction) {
-        const {username,email} = this.httpContext.request.body;
-        const result = await this.signUp.execute({username,email})
-         const response = new HttpResponseMessage(200);
+    private async index() {
+        try{
+            const {username,email} = this.httpContext.request.body;
+            const result = await this.signUp.execute({username,email})
 
-        return this.ok(result)
+            return this.ok({status: 'success', data: {message: 'new user created', ...result}})
+        }
+        catch(err){
+            const response = {status: 'error', error: null}
+            return this.badRequest(JSON.stringify(response))
+        }
     }
 
  
