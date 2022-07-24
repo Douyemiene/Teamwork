@@ -1,7 +1,5 @@
 import { Container } from 'inversify'
 import { MongoDBConnection } from './infrastructure/mongo/config';
-import { Model } from 'mongoose';
-import { User, IUser } from './infrastructure/mongo/models/user'
 
 
 // create container

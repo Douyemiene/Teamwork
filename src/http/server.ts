@@ -11,7 +11,6 @@ export class RestServer{
     
     constructor(container){
         // set up container
-        //let { server } = this
         container = new Container({ autoBindInjectable: true });
 
         this.server = new InversifyExpressServer(container);

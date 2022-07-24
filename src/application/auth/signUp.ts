@@ -2,7 +2,6 @@
 import { injectable } from 'inversify';
 import { UserRepository } from '../../repositories/user';
 import { IUser } from '../../infrastructure/mongo/models/user';
-import Jwt from '../../util/jwt';
 
 @injectable()
 export class SignUp {
@@ -17,7 +16,6 @@ export class SignUp {
             }
 
             const userData = await this.userRepository.create({...user})
-            console.log({userData})
             const token = await this.jwt.createToken(userData)   
             return {...userData, token}
         }catch(err){
