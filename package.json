@@ -31,6 +31,8 @@
     "inversify-express-utils": "^6.4.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.4",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.5.0"
   }
 }
