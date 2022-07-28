@@ -1,2 +1,2 @@
 import "./foo"
-import "./user"
+import "./auth"
