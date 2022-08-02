@@ -1,5 +1,4 @@
 import * as express from 'express';
-import crypto from 'crypto'
 import {
   controller,
   BaseHttpController,
@@ -17,12 +16,9 @@ export class AuthController extends BaseHttpController {
   @httpPost('/register')
   private async index() {
     try {
-
-      const md5sum = crypto.createHash('md5');
-
       const { username, email, password } = this.httpContext.request.body;
-      const hash = md5sum.update(password).digest('hex');
-      const result = await this.register.execute({ username, email, password:hash });
+
+      const result = await this.register.execute({ username, email, password });
 
       return this.ok({
         status: 'success',
