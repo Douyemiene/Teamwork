@@ -1,9 +1,8 @@
 import * as express from 'express';
 import {
-  interfaces,
   controller,
-  httpGet,
   BaseHttpController,
+  httpPost,
 } from 'inversify-express-utils';
 import { Register } from '../../application/auth/register';
 
@@ -13,16 +12,8 @@ export class AuthController extends BaseHttpController {
     super();
   }
 
-  /**
- * @swagger
- * /booka:
- *   get:
- *     description: register a new user
- *     responses:
- *       200:
- *         description: Returns a mysterious string.
- */
-  @httpGet('/register')
+
+  @httpPost('/register')
   private async index() {
     try {
       const { username, email } = this.httpContext.request.body;
