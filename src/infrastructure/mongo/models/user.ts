@@ -14,7 +14,7 @@ export interface IUser {
 
 
 // Put all user instance methods in this interface:
-interface IUserMethods {
+export interface IUserMethods {
   createObject(): IUser;
 }
 
@@ -31,7 +31,10 @@ const UserSchema = new mongoose.Schema<IUser, UserModel, IUserMethods>({
     id: String,
     username: uniqueAndRequired,
     email: uniqueAndRequired,
-    password: uniqueAndRequired,
+  password: {
+    type: String,
+    required: true,
+  },
     fullname: String,
     bio: String,
     following: Number,

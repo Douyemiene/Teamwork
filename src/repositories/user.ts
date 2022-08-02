@@ -1,11 +1,12 @@
 
 import { inject, injectable } from 'inversify';
-import { IUser, User, UserModel } from '../infrastructure/mongo/models/auth';
+import { IUser, User, UserModel } from '../infrastructure/mongo/models/user';
 import { HydratedDocument, Model } from 'mongoose';
+import { IUserMethods } from '../infrastructure/mongo/models/user';
 
 export interface IUserRepo {
     create(user: Partial<IUser>): Promise<IUser>;
-    getOne(username: string): Promise<IUser | null>;
+    getOne(username: string): Promise<IUser & IUserMethods | null>;
     //getAll(): Array<IUser>
     //putUser(): void
     //getUsers(params: Partial<IUser>): Promise<IUser[] | null>
@@ -24,7 +25,7 @@ export class UserRepository implements IUserRepo {
         return data
     }
     
-    async getOne(username: string): Promise<IUser>{
+    async getOne(username: string): Promise<IUser & IUserMethods>{
         return await this.userModel.findOne({username})
     }
 }
