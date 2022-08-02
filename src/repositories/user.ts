@@ -1,6 +1,6 @@
 
 import { inject, injectable } from 'inversify';
-import { IUser, User, UserModel } from '../infrastructure/mongo/models/user';
+import { IUser, User, UserModel } from '../infrastructure/mongo/models/auth';
 import { HydratedDocument, Model } from 'mongoose';
 
 export interface IUserRepo {

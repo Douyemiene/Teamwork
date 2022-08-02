@@ -1,7 +1,7 @@
 
 import { injectable } from 'inversify';
 import { UserRepository } from '../../repositories/user';
-import { IUser } from '../../infrastructure/mongo/models/user';
+import { IUser } from '../../infrastructure/mongo/models/auth';
 import Jwt from '../../util/jwt';
 
 @injectable()

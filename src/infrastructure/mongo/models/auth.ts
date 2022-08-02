@@ -21,19 +21,17 @@ interface IUserMethods {
 // Create a new Model type that knows about IUserMethods...
 export type UserModel = Model<IUser, {}, IUserMethods>;
 
+const uniqueAndRequired = {
+  type: String,
+  required: true,
+  unique: true
+}
+
 const UserSchema = new mongoose.Schema<IUser, UserModel, IUserMethods>({
     id: String,
-    username: {
-        type: String,
-        required: true,
-        // unique: true
-    },
-    email: {
-        type: String,
-        // required: true,
-        // unique: true
-    },
-    password: String,
+    username: uniqueAndRequired,
+    email: uniqueAndRequired,
+    password: uniqueAndRequired,
     fullname: String,
     bio: String,
     following: Number,
@@ -45,6 +43,7 @@ UserSchema.method('createObject', function () {
   const user = this.toObject();
   delete user['__v'];
   delete user['_id'];
+  delete user['password']
   return user;
 })
 
